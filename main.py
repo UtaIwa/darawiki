@@ -47,5 +47,15 @@ def view(word):
     else:
         return template('./templates/edit.html', title = word, content = '')
 
+@post('/docs/<word:path>')
+def edit(word):
+    content = request.params.content
+    message = request.params.message 
+
+    filename = f'./docs/{urllib.parse.unquote(word, "utf8")}.md'
+    with open(filename, 'w', encoding="utf-8", newline='') as f:
+        f.write(content)
+        redirect('/docs/' + word.split('?')[0])
+        
 if __name__ == '__main__':
     run(host='localhost', port=8080, reloader=True)
