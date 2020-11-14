@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang='ja'>
+    <head>
+        <meta charset='utf-8'>
+        <title>DaraWiki - {{title}}</title>
+        <style>
+            header {
+                width: min(1000px, 100%);
+                margin: 50px auto;
+            }
+
+            main {
+                width: min(1000px, 100%);
+                margin: 0 auto;
+            }
+
+            textarea {
+                width: 100%;
+                height: 30em;
+            }
+
+            input {
+                width: 100%;
+            }
+            .button {
+                display:block;
+                width: 10em;
+                margin: 2em auto;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>DaraWiki - {{title}}</h1>
+            <nav>
+                <a href='?view'>view</a>
+                <a>edit</a>
+            </nav>
+        </header>
+        <main>
+            <form method='post'>
+                <label for='content'>Content</label>
+                <br>
+                <textarea name='content'>{{content}}</textarea>
+                <br>
+                <label for='message'>Comment</label>
+                <br>
+                <input type='text' name='message' required>
+                <br>
+                <input type='submit' class='button'>
+            </form>
+        </main>
+    </body>
+</html>

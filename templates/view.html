@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='ja'>
+    <head>
+        <meta charset='utf-8'>
+        <title>DaraWiki - {{title}}</title>
+        <style>
+            header {
+                width: min(1000px, 100%);
+                margin: 50px auto;
+            }
+
+            main {
+                width: min(1000px, 100%);
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>DaraWiki - {{title}}</h1>
+            <nav>
+                <a>view</a>
+                <a href='?edit'>edit</a>
+            </nav>
+        </header>
+        <main>
+            {{! content}}
+        </main>
+    </body>
+</html>
