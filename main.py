@@ -8,7 +8,6 @@ def parse_index_list(link_item, nests):
     result = ''
     splited = link_item.split('/')
     depth = 0
-    updated = False
     for item in splited[:-1]:
         if depth < len(nests) and item != nests[depth]:
             nests = nests[:depth-1]
@@ -30,6 +29,23 @@ def index():
         # page_items.append(f'<li><a href="{file[:-3]}">{parse_index_list(link_text)}</a></li>')
     page_list = ''.join(page for page in page_items) + '</ul>'
     return template('./index.html', page_list = page_list)
+
+@get('/docs/<word:path>')
+def view(word):
+    edit_mode = 'edit' in request.params
+    if edit_mode:
+        template_file = './templates/edit.html'
+    else:
+        template_file = './templates/view.html'
+
+    filename = f'./docs/{urllib.parse.unquote(word, "utf8")}.md'
+    if os.path.exists(filename):
+        with open(filename, encoding="utf-8") as f:
+            content = f.read()
+            content = content.replace('\r\n','\n')
+            return template(template_file, title = word, content = content if edit_mode else markdown(content, extensions=['nl2br']))
+    else:
+        return template('./templates/edit.html', title = word, content = '')
 
 if __name__ == '__main__':
     run(host='localhost', port=8080, reloader=True)
