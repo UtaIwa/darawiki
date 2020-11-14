@@ -13,7 +13,7 @@ def parse_index_list(link_item, nests):
             nests = nests[:depth-1]
             result += f'</ul><ul><li>{item}</li><ul>'
             nests.append(item)
-    result += f'<li><a href="./docs/{link_item}">{splited[-1][:-3]}</a></li>'
+    result += f'<li><a href="/docs/{link_item[:-3]}">{splited[-1][:-3]}</a></li>'
     return result, nests
 
 @get('/')
